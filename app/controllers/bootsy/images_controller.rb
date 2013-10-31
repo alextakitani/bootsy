@@ -33,7 +33,7 @@ module Bootsy
     def create
       @gallery = find_gallery
       @gallery.save! unless @gallery.persisted?
-      @image = Image.new image_params
+      @image = Image.new params[:image]
       @image.image_gallery_id = @gallery.id
 
       respond_to do |format|
@@ -72,9 +72,5 @@ module Bootsy
       ImageGallery.new
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def image_params
-      params.require(:image).permit(:image_file)
-    end
   end
 end
